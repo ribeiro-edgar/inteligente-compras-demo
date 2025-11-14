@@ -1,0 +1,52 @@
+.container {
+  padding: 1.5rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.tabela-container {
+  overflow-x: auto;
+}
+
+.tabela-desempenho {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.melhorou {
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.piorou {
+  color: #c62828;
+  font-weight: 600;
+}
+
+.estavel {
+  color: #616161;
+  font-weight: 600;
+}
+
+.mensagem-vazia {
+  text-align: center;
+  color: #888;
+  margin-top: 2rem;
+}

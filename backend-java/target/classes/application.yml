@@ -1,0 +1,5 @@
+# Região AWS (ajuste conforme necessário)
+aws.dynamodb.region=sa-east-1
+
+# Se estiver usando DynamoDB local / LocalStack, descomente e ajuste:
+# aws.dynamodb.endpointOverride=http://localhost:8000

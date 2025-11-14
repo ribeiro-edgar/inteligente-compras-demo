@@ -1,0 +1,163 @@
+/* ===== CONTAINER PRINCIPAL ===== */
+.main-container {
+  max-width: 1000px;          /* largura máxima centralizada */
+  margin: 20px auto;          /* centraliza horizontalmente */
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;                  /* espaço entre colapsável e histórico */
+}
+
+/* ===== BLOCO COLAPSÁVEL - Inserir Compra ===== */
+.container-inserir {
+  width: 100%;                /* ocupa toda a largura do pai */
+  background: #fff;
+  border: 2px solid #4e54c8;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  .titulo-expansivel {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+
+    .seta {
+      font-size: 1.2rem;
+      transition: transform 0.2s ease;
+
+      &.aberto {
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .formulario-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #4e54c8;
+    border-radius: 8px;
+    background-color: #f9f9ff;
+
+    .campo {
+      margin-bottom: 12px;
+
+      label {
+        display: block;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px 12px;
+        border-radius: 6px;
+        border: 1px solid #4e54c8;
+        transition: border-color 0.2s ease;
+
+        &:focus {
+          border-color: #6c63ff;
+          outline: none;
+        }
+      }
+    }
+
+    .botoes {
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 10px 16px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        background-color: #4e54c8;
+        color: #fff;
+        transition: 0.2s;
+
+        &:hover {
+          background-color: #6c63ff;
+        }
+
+        &:active {
+          transform: scale(0.97);
+        }
+      }
+    }
+  }
+}
+
+/* ===== HISTÓRICO - Tabela de Compras ===== */
+.container-historico {
+  width: 100%;              /* mesma largura do container de inserir */
+  background: #fff;
+  border: 2px solid #4e54c8;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+
+  h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  .tabela-container {
+    overflow-x: auto;
+    border: 1px solid #4e54c8;
+    border-radius: 8px;
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 8px 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      th {
+        background-color: #f0f0ff;
+        font-weight: 600;
+      }
+
+      td {
+        &:nth-child(6) {
+          color: #4e54c8;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .vazio {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+    padding: 20px 0;
+  }
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  .main-container {
+    padding: 0 10px;
+  }
+
+  .container-inserir,
+  .container-historico {
+    padding: 15px;
+  }
+
+  .formulario-container,
+  .tabela-container {
+    padding: 15px;
+  }
+}

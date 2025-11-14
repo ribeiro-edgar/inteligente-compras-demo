@@ -1,0 +1,188 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+
+h2 {
+  color: #1a237e;
+  margin-bottom: 1rem;
+}
+
+.inputs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  flex: 1;
+}
+
+.btn-buscar {
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.btn-buscar:hover {
+  background-color: #1565c0;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.fornecedor-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease;
+}
+
+.fornecedor-card:hover {
+  transform: scale(1.02);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  color: white;
+}
+
+.badge.alto { background-color: #43a047; }     /* verde */
+.badge.medio { background-color: #ffb300; }    /* amarelo */
+.badge.baixo { background-color: #e53935; }    /* vermelho */
+
+.motivo {
+  margin-top: 8px;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.feedback-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-feedback {
+  flex: 1;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-feedback.good {
+  background-color: #4caf50;
+}
+
+.btn-feedback.good:hover {
+  background-color: #43a047;
+}
+
+.btn-feedback.bad {
+  background-color: #e53935;
+}
+
+.btn-feedback.bad:hover {
+  background-color: #c62828;
+}
+
+.explicacao-card {
+  margin-top: 30px;
+  padding: 16px;
+  border-left: 6px solid #1565c0;
+  background: #f5f7ff;
+  border-radius: 8px;
+}
+
+.btn-avaliar {
+  background-color: #fbc02d;
+  color: #000;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.btn-avaliar:hover {
+  background-color: #f9a825;
+}
+
+.avaliar-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Botão fixo no topo direito */
+.topo {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.topo-btn {
+  background-color: #fbc02d;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.topo-btn:hover {
+  background-color: #f9a825;
+}
+
+/* Inputs com label placeholder */
+.label-input::placeholder {
+  color: #888;
+  font-weight: 500;
+}
+
+/* Botão fixo no topo direito */
+.topo {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.topo-btn {
+  background-color: #fbc02d;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.topo-btn:hover {
+  background-color: #f9a825;
+}

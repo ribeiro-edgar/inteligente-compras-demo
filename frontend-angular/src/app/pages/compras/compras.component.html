@@ -1,0 +1,95 @@
+<div class="container-desempenho">
+  <h2>🛒 Gestor Inteligente de Compras</h2>
+
+  <!-- 🔹 Seção de histórico -->
+  <div *ngIf="mostrarHistorico; else sugestoes" class="bloco-conteudo">
+    <h3>📜 Histórico de Compras</h3>
+
+    <form (ngSubmit)="registrarCompra()" #formHistorico="ngForm" class="form-grid">
+      <input [(ngModel)]="compra.fornecedor" name="fornecedor" placeholder="Fornecedor" required class="input" />
+      <input [(ngModel)]="compra.produto" name="produto" placeholder="Produto" required class="input" />
+      <input [(ngModel)]="compra.quantidade" name="quantidade" type="number" min="1" placeholder="Quantidade" class="input" />
+      <input [(ngModel)]="compra.prazo_real" name="prazo_real" type="number" placeholder="Prazo real (dias)" class="input" />
+      <input [(ngModel)]="compra.atraso" name="atraso" type="number" placeholder="Atraso (dias)" class="input" />
+      <input [(ngModel)]="compra.custo_final" name="custo_final" type="number" placeholder="Custo final (R$)" class="input" />
+      <input [(ngModel)]="compra.satisfacao" name="satisfacao" type="number" step="0.1" max="5" placeholder="Satisfação (0–5)" class="input" />
+
+      <button type="submit" class="btn-primario col-span-2">💾 Registrar Compra</button>
+    </form>
+
+    <hr />
+
+    <button (click)="atualizarHistorico()" class="btn-secundario">
+      🔁 Atualizar Modelo com Histórico
+    </button>
+
+    <div *ngIf="historico.length === 0" class="vazio">
+      Nenhuma compra registrada ainda.
+    </div>
+  </div>
+
+  <!-- 🔹 Seção de sugestões -->
+  <ng-template #sugestoes>
+    <div class="bloco-conteudo">
+      <h3>💡 Sugestões Inteligentes de Compra</h3>
+
+      <div class="inputs">
+        <input [(ngModel)]="produtoId" placeholder="Digite o ID do produto" class="input" />
+        <input type="number" [(ngModel)]="quantidade" min="1" placeholder="Quantidade" class="input" />
+        <button (click)="buscarSugestao()" class="btn-primario">🔍 Buscar Sugestão</button>
+      </div>
+
+      <div *ngIf="carregando" class="vazio">
+        ⏳ Gerando sugestão do agente inteligente...
+      </div>
+
+      <div *ngIf="resultado?.erro" class="erro">
+        {{ resultado.erro }}
+      </div>
+
+      <h4 *ngIf="resultado?.produto">Produto: {{ resultado.produto }}</h4>
+
+      <div *ngIf="resultado && fornecedores.length > 0" class="cards-container">
+        <div *ngFor="let f of fornecedores" class="fornecedor-card" [ngStyle]="{'border-left': '8px solid ' + f.cor}">
+          <h5>{{ f.fornecedor }}</h5>
+
+          <div class="info-grid">
+            <p><strong>Preço Unitário:</strong> {{ f.preco_unitario | currency:'BRL' }}</p>
+            <p><strong>Quantidade:</strong> {{ f.quantidade }}</p>
+            <p><strong>Preço Total:</strong> {{ f.preco_total | currency:'BRL' }}</p>
+            <p><strong>Prazo:</strong> {{ f.prazo }}</p>
+            <p><strong>Score:</strong> {{ f.score | number:'1.3-3' }}</p>
+          </div>
+
+          <p class="classificacao">
+            <span class="badge"
+                  [ngClass]="{
+                    'alto': f.cor === 'verde',
+                    'medio': f.cor === 'amarelo',
+                    'baixo': f.cor === 'vermelho'
+                  }">
+              {{ f.classificacao }}
+            </span>
+          </p>
+
+          <p class="motivo"><em>{{ f.motivo }}</em></p>
+
+          <div class="feedback-buttons">
+            <button (click)="enviarFeedback(f.fornecedor, 1)" class="btn-feedback good">👍 Bom fornecedor</button>
+            <button (click)="enviarFeedback(f.fornecedor, -1)" class="btn-feedback bad">👎 Problema encontrado</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🧠 Explicação do Agente fora do cards-container -->
+      <div *ngIf="resultado?.explicacao" class="explicacao-card">
+        <h4>🧠 Explicação do Agente:</h4>
+        <p>{{ resultado.explicacao }}</p>
+      </div>
+
+      <div *ngIf="!resultado && fornecedores.length === 0" class="vazio">
+        Nenhuma sugestão disponível ainda.
+      </div>
+    </div>
+  </ng-template>
+</div>

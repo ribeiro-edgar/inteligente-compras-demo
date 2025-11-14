@@ -1,0 +1,100 @@
+<!-- 🔹 Container externo que centraliza tudo -->
+<div class="main-container">
+
+  <!-- 🔹 Bloco colapsável de Inserir Compra -->
+  <div class="container-inserir">
+    <h2 (click)="toggleFormulario()" class="titulo-expansivel">
+      ➕ Inserir Compra
+      <span class="seta" [class.aberto]="formularioAberto">
+        {{ formularioAberto ? '▲' : '▼' }}
+      </span>
+    </h2>
+
+    <div *ngIf="formularioAberto" class="formulario-container">
+      <form>
+        <div class="campo">
+          <label>Fornecedor</label>
+          <input type="text" [(ngModel)]="compra.fornecedor" name="fornecedor" />
+        </div>
+
+        <div class="campo">
+          <label>Produto</label>
+          <input type="text" [(ngModel)]="compra.produto" name="produto" />
+        </div>
+
+        <div class="campo">
+          <label>Quantidade</label>
+          <input type="number" [(ngModel)]="compra.quantidade" name="quantidade" />
+        </div>
+
+        <div class="campo">
+          <label>Prazo Real (dias)</label>
+          <input type="number" [(ngModel)]="compra.prazo_real" name="prazo_real" />
+        </div>
+
+        <div class="campo">
+          <label>Atraso (dias)</label>
+          <input type="number" [(ngModel)]="compra.atraso" name="atraso" />
+        </div>
+
+        <div class="campo">
+          <label>Custo Final (R$)</label>
+          <input type="number" [(ngModel)]="compra.custo_final" name="custo_final" />
+        </div>
+
+        <div class="campo">
+          <label>Satisfação (0–5)</label>
+          <input type="number" [(ngModel)]="compra.satisfacao" name="satisfacao" />
+        </div>
+
+        <div class="campo">
+          <label>Data da Compra</label>
+          <input type="date" [(ngModel)]="compra.data" name="data" />
+        </div>
+
+        <div class="botoes">
+          <button type="button" (click)="registrarCompra()">📝 Registrar Compra</button>
+          <button type="button" (click)="atualizarHistorico()">⚙️ Atualizar Modelo</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 🔹 Container do histórico -->
+  <div class="container-historico">
+    <h2 class="titulo-tabela">🧾 Histórico de Compras Reais</h2>
+
+    <div *ngIf="historico.length > 0; else vazio" class="tabela-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Fornecedor</th>
+          <th>Produto</th>
+          <th>Qtd</th>
+          <th>Prazo Real</th>
+          <th>Atraso</th>
+          <th>Custo Final</th>
+          <th>Satisfação</th>
+          <th>Data da Compra</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of historico">
+          <td>{{ c.fornecedor }}</td>
+          <td>{{ c.produto }}</td>
+          <td>{{ c.quantidade }}</td>
+          <td>{{ c.prazo_real }}</td>
+          <td>{{ c.atraso > 0 ? '❌ Sim (ruim)' : '✅ Não (bom)' }}</td>
+          <td>R$ {{ c.custo_final }}</td>
+          <td>{{ c.satisfacao }}</td>
+          <td>{{ c.data | date:'dd/MM/yyyy' }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #vazio>
+      <div class="vazio">Nenhuma compra registrada ainda.</div>
+    </ng-template>
+  </div>
+</div>

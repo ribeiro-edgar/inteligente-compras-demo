@@ -1,0 +1,28 @@
+<!-- 🔹 Navbar com menu hamburguer -->
+<nav class="navbar">
+  <div class="navbar-logo">
+    🧠 <span>ComprAI</span>
+  </div>
+
+  <!-- Botão hamburguer (visível apenas no mobile) -->
+  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
+
+  <div class="navbar-links" [class.active]="menuAtivo">
+    <a routerLink="/compras" routerLinkActive="active" (click)="fecharMenu()">Sugestão</a>
+    <a routerLink="/historico" routerLinkActive="active" (click)="fecharMenu()">Histórico</a>
+    <a routerLink="/desempenho" routerLinkActive="active" (click)="fecharMenu()">Desempenho</a>
+  </div>
+</nav>
+
+<!-- 🔹 Container principal de conteúdo -->
+<main class="main-container">
+  <div class="page-container">
+    <router-outlet></router-outlet>
+  </div>
+</main>
+
+
+<br />
+<button class="btn-flutuante" (click)="atualizarScoreTendencia()">
+  🔄 Atualizar Fornecedores
+</button>

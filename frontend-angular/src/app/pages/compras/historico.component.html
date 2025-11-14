@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>📜 Histórico de Compras</h2>
+
+  <form (ngSubmit)="registrarCompra()" class="form-grid">
+    <input [(ngModel)]="compra.fornecedor" name="fornecedor" placeholder="Fornecedor" required />
+    <input [(ngModel)]="compra.produto" name="produto" placeholder="Produto" required />
+    <input [(ngModel)]="compra.quantidade" type="number" name="quantidade" min="1" placeholder="Qtd" required />
+    <input [(ngModel)]="compra.prazo_real" type="number" name="prazo_real" placeholder="Prazo Real (dias)" required />
+    <select [(ngModel)]="compra.atraso" name="atraso">
+      <option [value]="0">Sem atraso</option>
+      <option [value]="1">Atrasou</option>
+    </select>
+    <input [(ngModel)]="compra.custo_final" type="number" name="custo_final" placeholder="Custo final" required />
+    <input [(ngModel)]="compra.satisfacao" type="number" step="0.1" name="satisfacao" placeholder="Satisfação (0–5)" required />
+    <button type="submit">Registrar Compra</button>
+  </form>
+
+  <button (click)="atualizarHistorico()" class="btn-update">🔄 Atualizar Modelo</button>
+
+  <h3>Compras Registradas</h3>
+  <table *ngIf="historico.length > 0">
+    <tr>
+      <th>Fornecedor</th><th>Produto</th><th>Qtd</th><th>Prazo Real</th><th>Atraso</th><th>Custo Final</th><th>Satisfação</th>
+    </tr>
+    <tr *ngFor="let h of historico">
+      <td>{{h.fornecedor}}</td>
+      <td>{{h.produto}}</td>
+      <td>{{h.quantidade}}</td>
+      <td>{{h.prazo_real}}</td>
+      <td>{{h.atraso ? 'Sim' : 'Não'}}</td>
+      <td>{{h.custo_final | currency:'BRL'}}</td>
+      <td>{{h.satisfacao}}</td>
+    </tr>
+  </table>
+</div>

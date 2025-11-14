@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Desempenho dos Fornecedores</h2>
+
+  <div *ngIf="relatorio?.length && relatorio.length > 0; else vazio" class="tabela-container">
+    <table class="tabela-desempenho">
+      <thead>
+      <tr>
+        <th>Fornecedor</th>
+        <th>Reputação Antes</th>
+        <th>Reputação Depois</th>
+        <th>Score Antes</th>
+        <th>Score Depois</th>
+        <th>Tendência</th>
+        <th>Análise</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of relatorio"
+          [ngClass]="{
+              'melhorou': item.tendencia_nova === 'Melhorou',
+              'piorou': item.tendencia_nova === 'Piorou',
+              'estavel': item.tendencia_nova === 'Estável'
+            }">
+
+        <td>{{ item.fornecedor }}</td>
+        <td>{{ item.reputacao_antes | number:'1.2-2' }}</td>
+        <td>{{ item.reputacao_depois | number:'1.2-2' }}</td>
+        <td>{{ item.score_antes | number:'1.0-0' }}</td>
+        <td>{{ item.score_depois | number:'1.0-0' }}</td>
+
+        <td>
+          <ng-container [ngSwitch]="item.tendencia_nova">
+            <span *ngSwitchCase="'Melhorou'" class="melhorou">📈 Melhorou</span>
+            <span *ngSwitchCase="'Piorou'" class="piorou">📉 Piorou</span>
+            <span *ngSwitchDefault class="estavel">⏸️ Estável</span>
+          </ng-container>
+        </td>
+
+        <td>{{ item.analise_textual || '-' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #vazio>
+    <p class="mensagem-vazia">Nenhum dado encontrado.</p>
+  </ng-template>
+</div>
